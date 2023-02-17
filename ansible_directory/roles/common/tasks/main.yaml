@@ -1,0 +1,33 @@
+--- 
+- name: curl installation
+  apt:
+    name: curl
+    state: present
+
+- name: install net-tools
+  apt: 
+    name: net-tools
+    state: present
+
+- name: vim editor
+  apt: 
+    name: vim
+    state: present
+
+- name:
+  apt: 
+    name: git
+    state: present
+    update_cache: yes
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+    state: latest
+    update_cache: true

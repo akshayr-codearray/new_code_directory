@@ -1,0 +1,4 @@
+# mongodb user
+
+mongo_user: myadmin
+mongo_user_pwd: password@123

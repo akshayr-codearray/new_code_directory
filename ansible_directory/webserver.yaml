@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - role: common
+      tags: common
+
+    - role: nginx 
+      tags: nginx
+
+    - role: mongodb
+      tags: mongodb
+
+    - role: rabbitmq
+      tags: rabbitmq
+
+    - role: docker
+      tags: docker

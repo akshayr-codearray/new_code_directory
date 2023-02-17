@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  flask:
+    build: ./flask
+    container_name: flask
+    restart: always
+    environment:
+      - APP_NAME=MyFlaskApp
+    expose:
+      - 8080
+
+    volumes:
+      - ./flask/:/app
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "90:80"
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+
+  amqp:
+    hostname: amqp
+    image: rabbitmq
+    container_name: amqp
+    ports:
+      - "5672:5672"
+  redis:
+    image: redis
+    hostname: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: ./celery
+    container_name: celery
+    depends_on:
+      - amqp
+      - redis
+      - flask

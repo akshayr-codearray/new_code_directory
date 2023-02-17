@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  flask-service:
+    build: ./flask
+    container_name: flask
+    restart: always
+    environment:
+      - APP_NAME=MyFlaskApp
+
+    volumes:
+      - ./flask/:/app
+
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports: 
+      - "90:80"
+
+  mongodb-service:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+

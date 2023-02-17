@@ -1,0 +1,19 @@
+---
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+    
+- name: nginx start service 
+  service:
+    name: nginx
+    state: started
+
+# - name: uninstall nginx
+#   apt:
+#     name: nginx
+#     state: absent
+#     purge: true
+#     autoremove: true

@@ -1,0 +1,34 @@
+---
+
+- name: public key
+  apt_key: 
+    url: https://www.mongodb.org/static/pgp/server-6.0.asc
+    state: present
+
+- name: mongo repo
+  apt_repository: 
+    repo: "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse"
+    state: present       
+                               
+- name: install packages
+  apt: 
+    pkg: mongodb-org 
+    state: present
+    update_cache: yes
+
+- name: mongodb service enable
+  shell: systemctl enable mongod
+
+- name: mongodb service start
+  shell: systemctl start mongod
+
+- name: install pymongo
+  shell: pip install pymongo
+
+- name: Define roles
+  mongodb_user:
+    database: myDB
+    name: "{{ mongo_user }}"
+    password: "{{ mongo_user_pwd }}"
+    # roles: readWriteAnyDatabase
+    state: present

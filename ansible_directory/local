@@ -1,0 +1,4 @@
+[node_server]
+
+192.168.29.87 ansible_ssh_user=ubuntu2 ansible_ssh_pass=password
+
